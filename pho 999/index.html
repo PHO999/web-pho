@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pho 999 - Vietnamská restaurace Týnec nad Sázavou</title>
+    <style>
+        /* Základní styly inspirované moderním designem */
+        :root {
+            --primary-color: #f0c000; /* Zlatá/žlutá z loga */
+            --dark-color: #222;
+            --light-color: #f9f9f9;
+            --text-color: #333;
+            --red-color: #d42027; /* Doplňková červená */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hlavička a Navigace */
+        header {
+            background: #ffffff;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: block;
+        }
+
+        .logo-img {
+            height: 70px; /* Výška loga */
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--red-color);
+        }
+
+        /* ===== ZMĚNA ZDE: Cesta k obrázku ===== */
+        .hero {
+            padding: 8rem 0 4rem 0;
+            margin-top: 80px; /* Kvůli fixní hlavičce */
+            text-align: center;
+            
+            /* Obrázek na pozadí s tmavým překrytím pro čitelnost */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('obrazky/sushi.jpg');
+            background-size: cover; /* Pokryje celou sekci */
+            background-position: center center; /* Vycentruje obrázek */
+            background-attachment: fixed; /* Parallax efekt při rolování */
+            
+            position: relative; 
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            
+            color: #ffffff; /* Změna barvy na bílou */
+            
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Stín pro lepší čitelnost */
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            
+            color: #f0f0f0; /* Změna barvy na světle šedou */
+            
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Stín pro lepší čitelnost */
+        }
+        /* ===== KONEC ZMĚNY ===== */
+
+        .cta-button {
+            display: inline-block;
+            background: var(--red-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #ad1c22;
+        }
+
+        /* Společné styly pro sekce */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            color: #555;
+        }
+
+        /* Sekce Menu */
+        .menu-section {
+            background: var(--light-color);
+        }
+
+        .menu-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-gallery img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Facebook sekce */
+        .subsection-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .facebook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            justify-items: center;
+        }
+        
+        /* Facebook embed se sám přizpůsobí, ale toto pomůže kontejneru */
+        .fb-post {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Sekce O nás */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 600px; /* Omezení maximální šířky obrázku */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 2rem auto; /* Mezery nad a pod obrázkem, vycentrování */
+            display: block; /* Zajištění centrování pomocí margin: auto */
+        }
+
+        /* Sekce Kontakt */
+        .contact-section {
+            background: var(--light-color);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Patička */
+        footer {
+            background: var(--dark-color);
+            color: #ccc;
+            text-align: center;
+            padding: 2.5rem 0;
+        }
+        
+        /* Responzivita pro mobilní telefony */
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 50px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .hero {
+                 padding: 6rem 0 3rem 0;
+                 margin-top: 60px;
+                 background-attachment: scroll;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .menu-gallery, .facebook-grid {
+                 grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v20.0" nonce="jA1tS2Ua"></script>
+    <header>
+        <div class="container">
+            <a href="#home" class="logo">
+                <img src="obrazky/Gemini_Generated_Image_4nhavh4nhavh4nha.png" alt="Pho 999 Logo" class="logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Domů</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#o-nas">O nás</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Vítejte v Pho 999</h1>
+                <h2>Autentická vietnamská kuchyně v Týnci nad Sázavou</h2>
+                <a href="#menu" class="cta-button">Zobrazit Menu</a>
+            </div>
+        </section>
+
+        <section id="menu" class="section menu-section">
+            <div class="container">
+                <h2 class="section-title">Naše Menu</h2>
+                <p class="section-subtitle">
+                    Prohlédněte si náš stálý jídelní lístek. Pro denní speciality a další rozšířené nabídky nás sledujte na Facebooku!
+                </p>
+                
+                <div class="menu-gallery">
+                    <img src="obrazky/1.png" alt="Menu Pho 999 - Polévky a předkrmy">
+                    <img src="obrazky/2.png" alt="Menu Pho 999 - Hlavní jídla 1">
+                    <img src="obrazky/3.png" alt="Menu Pho 999 - Kachna a kari">
+                    <img src="obrazky/4.png" alt="Menu Pho 999 - Nudle a rýže">
+                    <img src="obrazky/5.png" alt="Menu Pho 999 - Speciality">
+                    <img src="obrazky/6.png" alt="Menu Pho 999 - Přílohy a další jídla">
+                </div>
+                
+                <h3 class="subsection-title">Speciální nabídka z Facebooku</h3>
+                <div class="facebook-grid">
+                    <div class="fb-post"
+                         data-href="https://www.facebook.com/photo/?fbid=1305747174886599&set=pb.100063539860828.-2207520000"
+                         data-width="auto"
+                         data-show-text="true">
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="o-nas" class="section">
+            <div class="container">
+                <h2 class="section-title">O nás</h2>
+                <img src="obrazky/onas.jpg" alt="Personál a hosté Pho 999" class="about-image">
+                <div class="about-content">
+                    <p>
+                        Přímo v srdci malebného Posázaví, v Týnci nad Sázavou, objevíte nečekanou oázu exotických chutí. Místní vietnamská restaurace přináší vítaný závan dálek do tradičního českého městečka. Autentická vůně badyánu, citronové trávy a čerstvého koriandru vás okamžitě přenese do ulic Hanoje. Ať už se zastavíte na vydatnou a poctivou polévku Pho, která dokonale zahřeje po výletě podél řeky, nebo si vychutnáte křupavé jarní závitky a dokonale vyvážené Bún chả, čeká vás poctivá kuchyně, která staví na čerstvých surovinách a harmonii chutí.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Kontakt & Kde nás najdete</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Adresa:</h3>
+                        <p>Pho 999 Družstevní 200, 257 41, <br>Týnec nad Sázavou</p>
+                        
+                        <h3>Rezervace a objednávky:</h3>
+                        <p>Telefon: <strong>+420 776 031 999</strong></p>
+                        
+                        <h3>Otevírací doba:</h3>
+                        <p>
+                            Pondělí - Pátek: [9:00 - 19:30]<br>
+                            Sobota - Neděle: [9:00 - 19:30]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pho 999 Týnec nad Sázavou. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
